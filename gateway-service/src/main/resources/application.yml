@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+
+
+spring:
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+       - id: crud-service
+         uri: http://localhost:8090
+         predicates:
+           - Path=/**
+
+
+
+global-bucket4j:
+  enabled: true
+  in-memory:
+    allowed:
+      calls: 100000
+    time:
+      duration: 1
+      unit: MINUTES
+    tokens:
+      limit: 1000000
+
+user-bucket4j:
+  enabled: true
+  in-memory:
+    allowed:
+      calls: 1
+    time:
+      duration: 1
+      unit: MINUTES
+    tokens:
+      limit: 1
+
+
+
